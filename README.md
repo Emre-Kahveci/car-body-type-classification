@@ -1,42 +1,79 @@
-<div align="center">
+# Car Body Type Classification
 
-  <a href="">![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)</a>
+A deep learning project that classifies car images into 5 body types using Convolutional Neural Networks (CNN) built with TensorFlow/Keras.
 
-</div>
+## 🚗 Classification Categories
 
-<p align="center"><img src="https://socialify.git.ci/Emre-Kahveci/car-body-type-classification/image?font=Rokkitt&language=1&name=1&pattern=Solid&theme=Dark"></p>
+- **Coupe**
+- **Pickup**
+- **Sedan**
+- **SUV**
+- **Van**
 
-<p id="description">Code written to train logistic regression, XGB, Random Forest, SVM, GaussianNB, KNN algorithms for the bughunter dataset
+## 📁 Project Structure
 
-### **Data preprocessing and augmentation**
- - rescale=1./255
- - shear_range=0.2
- - zoom_range=0.2
- - horizontal_flip=True
+```
+car-body-type-classification/
+├── categorize_data.ipynb   # Data organization and preprocessing
+├── model.ipynb             # CNN model training
+├── keras_tuner.ipynb       # Hyperparameter optimization
+├── results/                # Training results and sample predictions
+└── README.md
+```
 
-### **CNN algorithm layer structure**
+## 🛠️ Technologies
 
- - **1. Convolutional Layer**
-   - Conv2D -> filters=48 (3, 3), activation=relu
-   - MaxPooling2D
- - **2. Convolutional Layer**
-   - Conv2D -> filters=128 (3, 3), activation=relu
-   - MaxPooling2D
- - **3. Convolutional Layer**
-   - Conv2D -> filters=96 (3, 3), activation=relu
-   - MaxPooling2D
- - **Global Average Pooling 2D**
- - **Fully connected Layer (Dense Layer)**
-   - Dense -> units=384 activation=relu
- - **Output Layer**
-   - Dense -> units=len(class_indices) activation=softmax
- - **Compile Model**
-   - Compile -> optimizer=Adam, loss='categorical_crossentropy', metrics='accuracy'
+- **Python 3.11**
+- **TensorFlow / Keras** - Deep learning framework
+- **Keras Tuner** - Hyperparameter optimization
+- **NumPy** - Numerical operations
 
-Link to download the dataset: [dataset link](https://universe.roboflow.com/ana-lowela-l--lucas/vehicle-classification-sgcum)
+## 🏗️ Model Architecture
 
-  ### **Result Graphs**
-  **Line chart**
-  ![line-chart](https://github.com/Emre-Kahveci/car-body-type-classification/blob/7ab5ed4d43f63c4d144eafc9ad4aaeac9d332897/results/accuracy-val-accuracy%20graph.png)
+A Sequential CNN model with the following layers:
 
-</p>
+| Layer | Configuration |
+|-------|--------------|
+| Conv2D (1) | 48 filters, 3x3 kernel, ReLU |
+| MaxPooling2D | 2x2 pool size |
+| Conv2D (2) | 96 filters, 3x3 kernel, ReLU |
+| MaxPooling2D | 2x2 pool size |
+| Conv2D (3) | 128 filters, 3x3 kernel, ReLU |
+| MaxPooling2D | 2x2 pool size |
+| GlobalAveragePooling2D | - |
+| Dense | 384 units, ReLU |
+| Output | 5 units, Softmax |
+
+## 📊 Data Preprocessing
+
+- **Image Size**: 224x224 pixels
+- **Data Augmentation**:
+  - Rescaling (1./255)
+  - Shear transformations (0.2)
+  - Zoom transformations (0.2)
+  - Horizontal flips
+- **Validation Split**: 20%
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+```bash
+pip install tensorflow keras-tuner numpy
+```
+
+### Usage
+
+1. **Organize your data**: Run `categorize_data.ipynb` to organize images into class folders
+2. **Train the model**: Execute `model.ipynb` to train the CNN
+3. **Optimize hyperparameters** (optional): Use `keras_tuner.ipynb` for hyperparameter tuning
+
+## 📈 Results
+
+The model achieves classification across all 5 car body types. Training results and sample predictions are available in the `results/` directory.
+
+![Training Accuracy](results/accuracy-val-accuracy%20graph.png)
+
+## 📝 License
+
+This project is open source and available for educational purposes.
